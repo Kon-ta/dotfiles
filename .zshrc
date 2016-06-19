@@ -11,6 +11,7 @@ export XDG_CONFIG_HOME=~/.config #neovim環境設定
 autoload -U compinit
 compinit
 
+zstyle ':completion:*' list-colors "${LS_COLORS}" # 補完候補のカラー表示
 setopt auto_list               # 補完候補を一覧で表示する(d)
 setopt auto_menu               # 補完キー連打で補完候補を順に表示する(d)
 setopt list_packed             # 補完候補をできるだけ詰めて表示する
