@@ -5,9 +5,6 @@ PATH=$PATH:/usr/local/texlive/2014/bin/x86_64-darwin/
 #######alias######
 
 ##################
-export XDG_CONFIG_HOME=~/.config #neovim環境設定
-
-
 autoload -U compinit
 compinit
 
@@ -20,6 +17,13 @@ bindkey "^[[Z" reverse-menu-complete  # Shift-Tabで補完候補を逆順する(
 setopt auto_cd
 setopt auto_pushd
 setopt correct
+
+## ヒストリを共有
+setopt share_history
+
+## ファイル名の展開でディレクトリにマッチした場合末尾に / を付加する
+setopt mark_dirs
+
 
 #プロンプト設定
 autoload colors
@@ -37,7 +41,7 @@ PROMPT2='[%n]> '
 export LSCOLORS=exfxcxdxbxegedabagacad
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 
-alias ls="ls -G"
+alias ls="ls -al"
 alias gls="gls --color"
 
 zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
@@ -49,4 +53,14 @@ function cd() {
   builtin cd $@ && ls;
 }
 
+#ファイルの名前検索のエイリアス
+function findname () {
+find ${1} -name ${2};
+}
+
+#ファイルの中についての名前検索
+
+function findgrep () {
+find "${1}" -type f -print | xargs grep "${2}";
+}
 
