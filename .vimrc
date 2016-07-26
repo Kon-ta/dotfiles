@@ -13,9 +13,30 @@ set number
 set incsearch
 set wildmenu wildmode=list:full
 set mouse=a 
-syntax on
+
+"スワップファイルを作成しない
+set noswapfile
+syntax enable
 
 set encoding=utf-8
+colorscheme molokai
+
+
+" 全角スペースのハイライトを設定
+function! ZenkakuSpace()
+  highlight ZenkakuSpace cterm=underline ctermfg=darkgrey gui=underline guifg=darkgrey
+endfunction
+ 
+if has('syntax')
+  augroup ZenkakuSpace
+    autocmd!
+    " ZenkakuSpaceをカラーファイルで設定するなら次の行は削除
+    autocmd ColorScheme       * call ZenkakuSpace()
+    " 全角スペースのハイライト指定
+    autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
+  augroup END
+  call ZenkakuSpace()
+endif
 
 "======================keymap=================================
 
@@ -23,6 +44,7 @@ nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 
 
+"====================dein設定=================================
 let s:dein_dir = expand('~/.cache/dein')
 " dein.vim 本体
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
