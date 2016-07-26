@@ -16,10 +16,9 @@ set mouse=a
 
 "スワップファイルを作成しない
 set noswapfile
-syntax enable
 
 set encoding=utf-8
-colorscheme molokai
+
 
 
 " 全角スペースのハイライトを設定
@@ -45,6 +44,14 @@ nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 
 "====================dein設定=================================
+
+" reset augroup
+augroup MyAutoCmd
+autocmd!
+augroup END
+
+
+
 let s:dein_dir = expand('~/.cache/dein')
 " dein.vim 本体
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
@@ -75,6 +82,13 @@ if dein#load_state(s:dein_dir)
   call dein#end()
   call dein#save_state()
 endif
+
+
+
+"colorscheme solarized
+syntax enable
+set background=dark
+
 
 " もし、未インストールものものがあったらインストール
 if dein#check_install()
