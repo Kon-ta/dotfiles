@@ -58,3 +58,12 @@ function findgrep () {
 find "${1}" -type f -print | xargs grep "${2}";
 }
 
+#zplugについての設定
+
+if [ -e "${HOME}/.zplug" ]; then
+    . ~/.zplug/zplug
+
+    zplug "zsh-users/zsh-syntax-highlighting"
+
+    zplug load --verbose
+fi
