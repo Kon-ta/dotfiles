@@ -29,6 +29,10 @@ set encoding=utf-8
 "Ignore the case of normal letters
 set ignorecase
 
+"current  highlight
+set cursorline
+highlight cursorline term=reverse cterm=reverse
+
 " Space highlight
 function! ZenkakuSpace()
   highlight ZenkakuSpace cterm=underline ctermfg=darkgrey gui=underline guifg=darkgrey
